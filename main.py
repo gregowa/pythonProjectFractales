@@ -1,6 +1,7 @@
 from math import sqrt
 import numpy as np
 import matplotlib.pyplot as plt
+from segment import Segment
 
 
 def f1(x):
@@ -16,6 +17,7 @@ def f3(x):
 
 def f4(x):
     return [2 / 3 + x[0] / 3, x[1] / 3]
+
 
 def longueur(a, c, b, d) :
     return sqrt((b - a)**2 + (c - d)**2)
@@ -139,14 +141,16 @@ L1 = [seg2]
 L2 = [seg4]
 L3 = [seg5]
 
-cotesPolygones = [L0,L1,L2,L3]
-sierpinski(cotesPolygones, 1)
+#cotesPolygones = [L0,L1,L2,L3]
+#sierpinski(cotesPolygones, 1)
 #vonkoch([seg1],1)
 
-a = 1
-b = 2
-c = 1
+a = 10
+b = 9
+c = 8
 d = 5
+
+dir = (d-c)/(b-a)
 
 l = longueur(a, c, b, d)
 
@@ -155,15 +159,13 @@ def f1_gene(x):
 
 
 def f4_gene(x):
-    return [(2 / 3) + (2*a + x[0]) / 3, (2*c + d + x[1]) / 3]
-
-
-arc = atan((d - c)/(b - a))
+    return [2*(b-a) / 3 + (2*a + x[0]) / 3, (2*c + x[1] + 2*(d-c)) / 3 ]
 
 x = [np.linspace(0, 1), np.linspace(0, 0)]
 y = [np.linspace(a, b), np.linspace(c, d)]
 plt.plot(x[0], x[1])
 plt.plot(y[0], y[1])
+plt.plot(f1_gene(y)[0], f1_gene(y)[1])
 plt.plot(f4_gene(y)[0], f4_gene(y)[1])
 
 plt.show()
