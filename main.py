@@ -7,15 +7,26 @@ def f1(x):
     return [x[0] / 3, x[1] / 3]
 
 def f2(x):
-    return [2*(1 / 3) + x[0] / 6 - sqrt(3) * x[1] / 6, sqrt(3) * x[0] / 6 + x[1] / 6]
+    return [1 / 3 + x[0] / 6 - sqrt(3) * x[1] / 6, sqrt(3) * x[0] / 6 + x[1] / 6]
 
 
 def f3(x):
-    return [2*(2 / 3) + (x[0] - 2*1) / 6 + sqrt(3) * x[1] / 6, - sqrt(3) * (x[0] - 2*1) / 6 + x[1] / 6]
+    return [2 / 3 + (x[0] - 1) / 6 + sqrt(3) * x[1] / 6, - sqrt(3) * (x[0] - 1) / 6 + x[1] / 6]
 
 
 def f4(x):
-    return [2*(2 / 3) + x[0] / 3, x[1] / 3]
+    return [2 / 3 + x[0] / 3, x[1] / 3]
+
+def longueur(a, c, b, d) :
+    return sqrt((b - a)**2 + (c - d)**2)
+
+
+def f_gene(x, a, c, b, d):
+    l = longueur(a, c, b, d)
+    f1 = [x[0] / 3, x[1] / 3]
+    f2 = [l*(1 / 3) + x[0] / 6 - sqrt(3) * x[1] / 6, sqrt(3) * x[0] / 6 + x[1] / 6]
+    f3 = [l*(2 / 3) + (x[0] - l*1) / 6 + sqrt(3) * x[1] / 6, - sqrt(3) * (x[0] - l*1) / 6 + x[1] / 6]
+    f4 = [l*(2 / 3) + x[0] / 3, x[1] / 3]
 
 
 def graph_fi(a, c, b, d):
