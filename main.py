@@ -145,10 +145,10 @@ L3 = [seg5]
 #sierpinski(cotesPolygones, 1)
 #vonkoch([seg1],1)
 
-a = 10
-b = 9
-c = 8
-d = 5
+a = 1
+b = 2
+c = 3
+d = 4
 
 dir = (d-c)/(b-a)
 
@@ -156,6 +156,14 @@ l = longueur(a, c, b, d)
 
 def f1_gene(x):
     return [(2*a + x[0]) / 3, (2*c + x[1]) / 3]
+
+
+def f2_gene(x):
+    return [(b-a) / 3 + (a + x[0]) / 6 - sqrt(3) * (a + x[1]) / 6, sqrt(3) * (c + x[0]) / 6 + (c + x[1]) / 6]
+
+
+def f3_gene(x):
+    return [2*(b-a) / 3 + ( a + (x[0] - 1)) / 6 + sqrt(3) * (a + x[1] )/ 6, - sqrt(3) * (c + x[0] - 1) / 6 + ( c +x[1]) / 6]
 
 
 def f4_gene(x):
@@ -166,6 +174,8 @@ y = [np.linspace(a, b), np.linspace(c, d)]
 plt.plot(x[0], x[1])
 plt.plot(y[0], y[1])
 plt.plot(f1_gene(y)[0], f1_gene(y)[1])
+plt.plot(f2_gene(y)[0], f2_gene(y)[1])
+#plt.plot(f3_gene(y)[0], f3_gene(y)[1])
 plt.plot(f4_gene(y)[0], f4_gene(y)[1])
 
 plt.show()
