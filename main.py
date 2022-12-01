@@ -143,6 +143,31 @@ cotesPolygones = [L0,L1,L2,L3]
 sierpinski(cotesPolygones, 1)
 #vonkoch([seg1],1)
 
+a = 1
+b = 2
+c = 1
+d = 5
+
+l = longueur(a, c, b, d)
+
+def f1_gene(x):
+    return [(2*a + x[0]) / 3, (2*c + x[1]) / 3]
+
+
+def f4_gene(x):
+    return [(2 / 3) + (2*a + x[0]) / 3, (2*c + d + x[1]) / 3]
+
+
+arc = atan((d - c)/(b - a))
+
+x = [np.linspace(0, 1), np.linspace(0, 0)]
+y = [np.linspace(a, b), np.linspace(c, d)]
+plt.plot(x[0], x[1])
+plt.plot(y[0], y[1])
+plt.plot(f4_gene(y)[0], f4_gene(y)[1])
+
+plt.show()
+
 # res = F_ligne_brisee(L)
 # pour tous les segments
 # for i in range(0,len(res)):
