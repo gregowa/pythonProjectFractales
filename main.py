@@ -6,17 +6,16 @@ import matplotlib.pyplot as plt
 def f1(x):
     return [x[0] / 3, x[1] / 3]
 
-
 def f2(x):
-    return [1 / 3 + x[0] / 6 - sqrt(3) * x[1] / 6, sqrt(3) * x[0] / 6 + x[1] / 6]
+    return [2*(1 / 3) + x[0] / 6 - sqrt(3) * x[1] / 6, sqrt(3) * x[0] / 6 + x[1] / 6]
 
 
 def f3(x):
-    return [2 / 3 + (x[0] - 1) / 6 + sqrt(3) * x[1] / 6, - sqrt(3) * (x[0] - 1) / 6 + x[1] / 6]
+    return [2*(2 / 3) + (x[0] - 2*1) / 6 + sqrt(3) * x[1] / 6, - sqrt(3) * (x[0] - 2*1) / 6 + x[1] / 6]
 
 
 def f4(x):
-    return [2 / 3 + x[0] / 3, x[1] / 3]
+    return [2*(2 / 3) + x[0] / 3, x[1] / 3]
 
 
 def graph_fi(a, c, b, d):
@@ -148,15 +147,15 @@ def sierpinski(L0, L1, L2, n):
 # graph_fi(0, 0, 1, 0)
 # plt.plot(seg1[0],seg1[1])
 
-seg1 = segment(0, 0, 1, 0)
+seg1 = segment(0, 0, 2, 0)
 seg2 = segment(0, 0, 0, 1)
 seg3 = segment1(0, 1)
 
 L0 = [seg1]
 L1 = [seg2]
 L2 = [seg3]
-sierpinski(L0, L1, L2, 5)
-# vonkoch(L,6)
+#sierpinski(L0, L1, L2, 5)
+vonkoch([seg1],1)
 
 # res = F_ligne_brisee(L)
 # pour tous les segments
@@ -166,3 +165,4 @@ sierpinski(L0, L1, L2, 5)
 # affiche leur image
 #      plt.plot(res[i][j][0],res[i][j][1])
 # plt.show()
+
