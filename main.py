@@ -103,70 +103,45 @@ def G_polygone(L):
     return res
 
 
-def sierpinski(L0, L1, L2, n):
-    for k in range(0, n):
-        res = G_polygone(L0)
-        # pour chaque segment de la ligne brisée
-        size = len(L0)
-        for i in range(0, size):
-            # ajoute les nouveaux segments crées à la ligne brisée
-            L0.append(res[i][0])
-            L0.append(res[i][1])
-            L0.append(res[i][2])
-        # affichage
-        if k == n - 1:
-            for i in range(0, len(res)):
-                # pour les 4 transformations
-                for j in range(0, 3):
-                    # affiche leur image
-                    plt.plot(res[i][j][0], res[i][j][1])
-    for k in range(0, n):
-        res = G_polygone(L1)
-        # pour chaque segment de la ligne brisée
-        size = len(L1)
-        for i in range(0, size):
-            # ajoute les nouveaux segments crées à la ligne brisée
-            L1.append(res[i][0])
-            L1.append(res[i][1])
-            L1.append(res[i][2])
-        # affichage
-        if k == n - 1:
-            for i in range(0, len(res)):
-                # pour les 4 transformations
-                for j in range(0, 3):
-                    # affiche leur image
-                    plt.plot(res[i][j][0], res[i][j][1])
-    for k in range(0, n):
-        res = G_polygone(L2)
-        # pour chaque segment de la ligne brisée
-        size = len(L2)
-        for i in range(0, size):
-            # ajoute les nouveaux segments crées à la ligne brisée
-            L2.append(res[i][0])
-            L2.append(res[i][1])
-            L2.append(res[i][2])
-        # affichage
-        if k == n - 1:
-            for i in range(0, len(res)):
-                # pour les 4 transformations
-                for j in range(0, 3):
-                    # affiche leur image
-                    plt.plot(res[i][j][0], res[i][j][1])
-    plt.show()
+def sierpinski(cotesPolygone, n):
+    for c in cotesPolygone:
+        for k in range(0, n):
+            res = G_polygone(c)
+            # pour chaque segment de la ligne brisée
+            size = len(c)
+            for i in range(0, size):
+                # ajoute les nouveaux segments crées à la ligne brisée
+                L0.append(res[i][0])
+                L0.append(res[i][1])
+                L0.append(res[i][2])
+            # affichage
+            if k == n - 1:
+                for i in range(0, len(res)):
+                    # pour les 4 transformations
+                    for j in range(0, 3):
+                        # affiche leur image
+                        plt.plot(res[i][j][0], res[i][j][1])
+
+        plt.show()
 
 
 # graph_fi(0, 0, 1, 0)
 # plt.plot(seg1[0],seg1[1])
 
-seg1 = segment(0, 0, 2, 0)
+seg1 = segment(0, 0, 1, 0)
 seg2 = segment(0, 0, 0, 1)
 seg3 = segment1(0, 1)
+seg4 = segment(1, 1, 1, 0)
+seg5 = segment(0, 1, 1, 1)
 
 L0 = [seg1]
 L1 = [seg2]
-L2 = [seg3]
-#sierpinski(L0, L1, L2, 5)
-vonkoch([seg1],1)
+L2 = [seg4]
+L3 = [seg5]
+
+cotesPolygones = [L0,L1,L2,L3]
+sierpinski(cotesPolygones, 1)
+#vonkoch([seg1],1)
 
 # res = F_ligne_brisee(L)
 # pour tous les segments
