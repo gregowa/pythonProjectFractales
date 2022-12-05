@@ -146,9 +146,9 @@ L3 = [seg5]
 #vonkoch([seg1],1)
 
 a = 1
-b = 2
-c = 3
-d = 4
+b = 89
+c = -10
+d = 48
 
 dir = (d-c)/(b-a)
 
@@ -159,7 +159,7 @@ def f1_gene(x):
 
 
 def f2_gene(x):
-    return [(b-a) / 3 + (a + x[0]) / 6 - sqrt(3) * (a + x[1]) / 6, sqrt(3) * (c + x[0]) / 6 + (c + x[1]) / 6]
+    return [(b-a) / 3 + (2*a + x[0]) / 6 - sqrt(3) * (2*c + x[1]) / 6, sqrt(3) * (c + x[0]) / 6 + (c + x[1]) / 6]
 
 
 def f3_gene(x):
@@ -173,10 +173,10 @@ x = [np.linspace(0, 1), np.linspace(0, 0)]
 y = [np.linspace(a, b), np.linspace(c, d)]
 plt.plot(x[0], x[1])
 plt.plot(y[0], y[1])
-plt.plot(f1_gene(y)[0], f1_gene(y)[1])
+#plt.plot(f1_gene(y)[0], f1_gene(y)[1])
 plt.plot(f2_gene(y)[0], f2_gene(y)[1])
 #plt.plot(f3_gene(y)[0], f3_gene(y)[1])
-plt.plot(f4_gene(y)[0], f4_gene(y)[1])
+#plt.plot(f4_gene(y)[0], f4_gene(y)[1])
 
 plt.show()
 
