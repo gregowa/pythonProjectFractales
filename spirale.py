@@ -20,6 +20,7 @@ for rad in rads:
 pts.append(x)
 pts.append(y)
 
+
 def h1(x, y):
     return [x / 3 + 2, y / 3]
 
@@ -27,6 +28,7 @@ def h1(x, y):
 def h2(x, y):
     return [(x * np.cos(phi) - y * np.sin(phi)) * (b ** -phi),
             (x * np.sin(phi) + y * np.cos(phi)) * (b ** -phi)]
+
 
 def H1(pts) :
     resX = []
@@ -37,7 +39,8 @@ def H1(pts) :
         resY.append(res[1])
     return [resX, resY]
 
-def H2(pts) :
+
+def H2(pts):
     resX = []
     resY = []
     for p in range(0, len(pts[0])):
@@ -45,6 +48,7 @@ def H2(pts) :
         resX.append(res[0])
         resY.append(res[1])
     return [resX, resY]
+
 
 def spirales(pts, n, m):
     spirale_finale = [pts]
@@ -63,5 +67,6 @@ def spirales(pts, n, m):
     for s in spirale_finale:
         plt.plot(s[0], s[1])
     plt.show()
+
 
 spirales(pts, 3, 30)
