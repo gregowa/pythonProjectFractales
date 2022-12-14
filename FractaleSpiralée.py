@@ -6,7 +6,6 @@ a = 2
 b = 1.19
 phi = np.pi / 6
 
-
 rads = list(reversed(np.arange(0, (8 * np.pi), 0.01)))
 pts = []
 x = []
@@ -19,7 +18,7 @@ for rad in rads:
 pts.append(x)
 pts.append(y)
 
-po = [[0], [2]]
+po = [0,2]
 
 def h1(x, y):
     return [x / 3 + 2, y / 3]
@@ -63,9 +62,9 @@ def H(pts) :
 def H4bis(pts) :
     resX = []
     resY = []
-    if random() < 0.5:
+    if random() < 0.12:
         for p in range(0, len(pts[0])):
-            resh1 = h1(p)
+            resh1= h1(pts[0][p], pts[1][p])
             resX.append(resh1[0])
             resY.append(resh1[1])
     else:
@@ -75,19 +74,20 @@ def H4bis(pts) :
             resY.append(resh2[1])
     return [resX, resY]
 
+#fonction spirales qui renvoie la liste de points crées à chaque itération (soit 2 spirales reliées)
 def spiralesQ3(pts, n):
-    spirale_finale = pts
+    spirale_finale = [pts]
     for i in range(0, n):
         spirales_temp = []
         for s in spirale_finale:
-            spirales_temp.append(H(s))
+            spirales_temp.append(HQ3(s))
         spirale_finale.clear()
         spirale_finale = spirales_temp
     for s in spirale_finale:
         plt.plot(s[0], s[1])
     plt.show()
 
-
+#fonction spirales qui renvoie la liste de points crées à chaque itération (soit l'image par h1 soit l'image par h2)
 def spiralesQ4(pts, n):
     spirale_finale = [pts]
     for i in range(0, n):
@@ -101,19 +101,23 @@ def spiralesQ4(pts, n):
     plt.show()
 
 def spiralesQ4bis(pts, n):
-    spirale_finale = pts
+    spirale_finale = po
     print(spirale_finale)
     for i in range(0, n):
-        spirales_tempX = []
+        print(i)
+        spirales_tempX = []  #liste des abscisses
         spirales_tempY = []
-        for s in spirale_finale:
-            spirales_tempX.append(H4bis(s)[0])
-            spirales_tempY.append(H4bis(s)[1])
+        newP = H4bis(spirale_finale)
+        spirales_tempX.append(newP[0])
+        spirales_tempY.append(newP[1])
+        print('spirale_tempX')
+        print(spirales_tempX)
+        print('spirale_tempY')
+        print(spirales_tempY)
         for x in spirales_tempX :
             spirale_finale[0].append(x)
         for y in spirales_tempX :
             spirale_finale[0].append(y)
-        print(spirale_finale)
     for s in spirale_finale:
         plt.plot(s[0], s[1])
     plt.show()
@@ -138,6 +142,7 @@ def H2(pts):
     return [resX, resY]
 
 
+#fonction spirales qui effectue n fois h1 et m fois h2
 def spirales(pts, n, m):
     spirale_finale = [pts]
     for i in range(0, n):
@@ -157,4 +162,27 @@ def spirales(pts, n, m):
     plt.show()
 
 
-spiralesQ4bis(po, 2)
+
+
+def spiralesQ4ter(P0,n):
+    ptsToShow = [[],[]]
+    newPts = [[], []]
+    newPts[0].append(P0[0])
+    newPts[1].append(P0[1])
+    for i in range(0,n):
+        res = H4bis(newPts)
+        #efface de la liste des nouveaux points
+        #les points dont on a déjà calculé l'image
+        newPts[0].clear()
+        newPts[1].clear()
+        for p in range (0,len(res[0])):
+            newPts[0].append(res[0][p])
+            newPts[1].append(res[1][p])
+            ptsToShow[0].append(res[0][p])
+            ptsToShow[1].append(res[1][p])
+    plt.scatter(ptsToShow[0],ptsToShow[1],s=0.5)
+    plt.show()
+
+
+spiralesQ4ter(po,50000)
+
