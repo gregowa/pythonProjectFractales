@@ -3,13 +3,11 @@ import matplotlib.pyplot as plt
 
 a = 2
 b = 1.19
-
 phi = np.pi / 6
 
+
 rads = list(reversed(np.arange(0, (8 * np.pi), 0.01)))
-
 pts = []
-
 x = []
 y = []
 
@@ -28,6 +26,35 @@ def h1(x, y):
 def h2(x, y):
     return [(x * np.cos(phi) - y * np.sin(phi)) * (b ** -phi),
             (x * np.sin(phi) + y * np.cos(phi)) * (b ** -phi)]
+
+
+def H(pts) :
+    resX = []
+    resY = []
+    for p in range(0, len(pts[0])):
+        resh1 = h1(pts[0][p], pts[1][p])
+        resX.append(resh1[0])
+        resY.append(resh1[1])
+    for p in range(0, len(pts[0])):
+        resh2 = h2(pts[0][p], pts[1][p])
+        resX.append(resh2[0])
+        resY.append(resh2[1])
+    return [resX, resY]
+
+
+def spiralesQ3(pts, n):
+    spirale_finale = [pts]
+    spirales_m = [pts]
+    for i in range(0, n):
+        for s in spirale_finale:
+            res = H(s)
+            temp = res
+            spirales_m.append(temp)
+        spirale_finale.clear()
+        spirale_finale = spirales_m
+    for s in spirale_finale:
+        plt.plot(s[0], s[1])
+    plt.show()
 
 
 def H1(pts) :
@@ -69,4 +96,4 @@ def spirales(pts, n, m):
     plt.show()
 
 
-spirales(pts, 3, 30)
+spiralesQ3(pts, 2)
