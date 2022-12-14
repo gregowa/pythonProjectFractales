@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from random import *
 
 a = 2
 b = 1.19
@@ -18,6 +19,7 @@ for rad in rads:
 pts.append(x)
 pts.append(y)
 
+po = [[0], [2]]
 
 def h1(x, y):
     return [x / 3 + 2, y / 3]
@@ -27,8 +29,7 @@ def h2(x, y):
     return [(x * np.cos(phi) - y * np.sin(phi)) * (b ** -phi),
             (x * np.sin(phi) + y * np.cos(phi)) * (b ** -phi)]
 
-
-def H(pts) :
+def HQ3(pts) :
     resX = []
     resY = []
     for p in range(0, len(pts[0])):
@@ -39,23 +40,83 @@ def H(pts) :
         resh2 = h2(pts[0][p], pts[1][p])
         resX.append(resh2[0])
         resY.append(resh2[1])
+    plt.show()
     return [resX, resY]
 
 
+def H(pts) :
+    resX = []
+    resY = []
+    if random() < 0.5:
+        for p in range(0, len(pts[0])):
+            resh1 = h1(pts[0][p], pts[1][p])
+            resX.append(resh1[0])
+            resY.append(resh1[1])
+    else:
+        for p in range(0, len(pts[0])):
+            resh2 = h2(pts[0][p], pts[1][p])
+            resX.append(resh2[0])
+            resY.append(resh2[1])
+    return [resX, resY]
+
+
+def H4bis(pts) :
+    resX = []
+    resY = []
+    if random() < 0.5:
+        for p in range(0, len(pts[0])):
+            resh1 = h1(p)
+            resX.append(resh1[0])
+            resY.append(resh1[1])
+    else:
+        for p in range(0, len(pts[0])):
+            resh2 = h2(pts[0][p], pts[1][p])
+            resX.append(resh2[0])
+            resY.append(resh2[1])
+    return [resX, resY]
+
 def spiralesQ3(pts, n):
-    spirale_finale = [pts]
-    spirales_m = [pts]
+    spirale_finale = pts
     for i in range(0, n):
+        spirales_temp = []
         for s in spirale_finale:
-            res = H(s)
-            temp = res
-            spirales_m.append(temp)
+            spirales_temp.append(H(s))
         spirale_finale.clear()
-        spirale_finale = spirales_m
+        spirale_finale = spirales_temp
     for s in spirale_finale:
         plt.plot(s[0], s[1])
     plt.show()
 
+
+def spiralesQ4(pts, n):
+    spirale_finale = [pts]
+    for i in range(0, n):
+        spirales_temp = []
+        for s in spirale_finale:
+            spirales_temp.append(H(s))
+        for s in spirales_temp:
+            spirale_finale.append(s)
+    for s in spirale_finale:
+        plt.plot(s[0], s[1])
+    plt.show()
+
+def spiralesQ4bis(pts, n):
+    spirale_finale = pts
+    print(spirale_finale)
+    for i in range(0, n):
+        spirales_tempX = []
+        spirales_tempY = []
+        for s in spirale_finale:
+            spirales_tempX.append(H4bis(s)[0])
+            spirales_tempY.append(H4bis(s)[1])
+        for x in spirales_tempX :
+            spirale_finale[0].append(x)
+        for y in spirales_tempX :
+            spirale_finale[0].append(y)
+        print(spirale_finale)
+    for s in spirale_finale:
+        plt.plot(s[0], s[1])
+    plt.show()
 
 def H1(pts) :
     resX = []
@@ -96,4 +157,4 @@ def spirales(pts, n, m):
     plt.show()
 
 
-spiralesQ3(pts, 2)
+spiralesQ4bis(po, 2)
