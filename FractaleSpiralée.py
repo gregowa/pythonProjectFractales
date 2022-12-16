@@ -62,7 +62,7 @@ def H(pts) :
 def H4bis(pts) :
     resX = []
     resY = []
-    if random() < 0.12:
+    if random() < 0.2:
         for p in range(0, len(pts[0])):
             resh1= h1(pts[0][p], pts[1][p])
             resX.append(resh1[0])
@@ -180,9 +180,9 @@ def spiralesQ4ter(P0,n):
             newPts[1].append(res[1][p])
             ptsToShow[0].append(res[0][p])
             ptsToShow[1].append(res[1][p])
-    plt.scatter(ptsToShow[0],ptsToShow[1],s=0.5)
+    plt.scatter(ptsToShow[0],ptsToShow[1],s=0.1)
     plt.show()
 
 
-spiralesQ4ter(po,50000)
+spiralesQ4ter(po,100000)
 
