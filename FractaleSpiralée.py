@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from random import *
 
+#paramètres de la spirale
 a = 2
 b = 1.19
 phi = np.pi / 6
@@ -18,7 +19,8 @@ for rad in rads:
 pts.append(x)
 pts.append(y)
 
-po = [0,2]
+#point de départ
+p0 = [0, 2]
 
 def h1(x, y):
     return [x / 3 + 2, y / 3]
@@ -84,7 +86,7 @@ def spiralesQ3(pts, n):
         spirale_finale.clear()
         spirale_finale = spirales_temp
     for s in spirale_finale:
-        plt.plot(s[0], s[1])
+        plt.scatter(s[0], s[1], s=0.1)
     plt.show()
 
 #fonction spirales qui renvoie la liste de points crées à chaque itération (soit l'image par h1 soit l'image par h2)
@@ -101,7 +103,7 @@ def spiralesQ4(pts, n):
     plt.show()
 
 def spiralesQ4bis(pts, n):
-    spirale_finale = po
+    spirale_finale = p0
     print(spirale_finale)
     for i in range(0, n):
         print(i)
@@ -141,7 +143,7 @@ def H2(pts):
         resY.append(res[1])
     return [resX, resY]
 
-
+#première idée : utilisation de plot
 #fonction spirales qui effectue n fois h1 et m fois h2
 def spirales(pts, n, m):
     spirale_finale = [pts]
@@ -163,8 +165,8 @@ def spirales(pts, n, m):
 
 
 
-
-def spiralesQ4ter(P0,n):
+#Q5
+def spiralesPoints(P0, n):
     ptsToShow = [[],[]]
     newPts = [[], []]
     newPts[0].append(P0[0])
@@ -183,6 +185,6 @@ def spiralesQ4ter(P0,n):
     plt.scatter(ptsToShow[0],ptsToShow[1],s=0.1)
     plt.show()
 
-
-spiralesQ4ter(po,100000)
+spiralesQ3(pts,10)
+#spiralesPoints(p0, 100000)
 
