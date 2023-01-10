@@ -12,9 +12,11 @@ def g2(x):
 
 
 def g3(x):
-    return [x[0] / 2, 1 / 2 + x[1] / 2]
+    return [x[0] / 2, 1/2 + x[1] / 2]
 
-
+#Q4 : Modification de g3 pour obtenir une autre fractale
+def g3bis(x):
+    return [x[0] / 2 + 1/2 , x[1] / 2 + 1/2]
 def G_polygone(pts):
     res = []
     for p in pts:
@@ -38,7 +40,7 @@ def sierpinski(pts, n):
     plt.show()
 
 triangle = [[[0, 1, 0], [0, 0, 1]]]
-sierpinski(triangle, 3)
+sierpinski(triangle, 1)
 
 carre = [[[0, 1, 1, 0], [0, 0, 1, 1]]]
 sierpinski(carre, 5)
