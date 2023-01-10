@@ -82,8 +82,8 @@ def vonkoch(L0, n):
     plt.show()
 
 
-seg1 = segment(0, 0, 1, 0)
-vonkoch([seg1],4)
+seg1 = segment(-1, 0, 1, 2)
+vonkoch([seg1],6)
 
 a = 1
 b = 89
