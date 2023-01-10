@@ -182,9 +182,9 @@ def spiralesPoints(P0, n):
             newPts[1].append(res[1][p])
             ptsToShow[0].append(res[0][p])
             ptsToShow[1].append(res[1][p])
-    plt.scatter(ptsToShow[0],ptsToShow[1],s=0.1)
+    plt.scatter(ptsToShow[0],ptsToShow[1],s=0.001)
     plt.show()
 
-spiralesQ3(pts,10)
-#spiralesPoints(p0, 100000)
+#spiralesQ3(pts,10)
+spiralesPoints(p0, 500000)
 

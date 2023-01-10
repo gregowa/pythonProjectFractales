@@ -3,16 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def segment(a, c, b, d):
-    # segment entre les points (a,c) et (b,d)
-    return [np.linspace(a, b), np.linspace(c, d)]
-
-
-def segment1(a, b):
-    x = np.linspace(a, b)
-    return [x, 1 - x]
-
-
 def g1(x):
     return [x[0] / 2, x[1] / 2]
 
@@ -25,50 +15,35 @@ def g3(x):
     return [x[0] / 2, 1 / 2 + x[1] / 2]
 
 
-def G_polygone(L):
-    res = [None] * len(L)
-    for i in range(0, len(L)):
-        # L[i] : i-ème segment de la ligne brisée
-        # res[i] : liste des images du i-ème segment par les 4 applications
-        # res : liste de liste d'images de chaque segment
-        res[i] = [g1(L[i]), g2(L[i]), g3(L[i])]
+def G_polygone(pts):
+    res = []
+    for p in pts:
+        temp = list(zip(p[0], p[1]))
+        for g in [g1, g2, g3]:
+            abs, ord = [], []
+            for i in range(len(temp)):
+                image = g(temp[i])
+                abs.append(image[0])
+                ord.append(image[1])
+            res.append([abs, ord])
     return res
 
 
-def sierpinski(cotesPolygone, n):
-    for c in cotesPolygone:
-        for k in range(0, n):
-            res = G_polygone(c)
-            # pour chaque segment de la ligne brisée
-            size = len(c)
-            for i in range(0, size):
-                # ajoute les nouveaux segments crées à la ligne brisée
-                L0.append(res[i][0])
-                L0.append(res[i][1])
-                L0.append(res[i][2])
-            # affichage
-            if k == n - 1:
-                for i in range(0, len(res)):
-                    # pour les 4 transformations
-                    for j in range(0, 3):
-                        # affiche leur image
-                        plt.plot(res[i][j][0], res[i][j][1])
+def sierpinski(pts, n):
+    pts_finaux = pts
+    for i in range(n):
+        pts_finaux = G_polygone(pts_finaux)
+    for p in pts_finaux:
+        plt.fill(p[0], p[1])
+    plt.show()
 
-        plt.show()
+triangle = [[[0, 1, 0], [0, 0, 1]]]
+sierpinski(triangle, 3)
 
+carre = [[[0, 1, 1, 0], [0, 0, 1, 1]]]
+sierpinski(carre, 5)
 
-seg1 = segment(0, 0, 1, 0)
-seg2 = segment(0, 0, 0, 1)
-seg3 = segment1(0, 1)
-seg4 = segment(1, 1, 1, 0)
-seg5 = segment(0, 1, 1, 1)
-
-L0 = [seg1]
-L1 = [seg2]
-L2 = [seg4]
-L3 = [seg5]
-
-cotesPolygones = [L0,L1,L2,L3]
-sierpinski(cotesPolygones, 1)
+hexagone = [[[0.5, 1, 1, 0.5, 0, 0], [0, 0.2, 0.8, 1, 0.8, 0.2]]]
+sierpinski(hexagone, 5)
 
 
